@@ -49,7 +49,7 @@ export default function Home() {
       <header className="text-center py-6 bg-black bg-opacity-50">
         <h1 className="text-4xl md:text-6xl font-bold">Zap Studio</h1>
         <p className="text-lg md:text-2xl text-gray-400 mt-2">
-          Transform your imagination into reality with AI.
+          Transform your imagination into reality with Z-AI.
         </p>
       </header>
 
