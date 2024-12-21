@@ -44,39 +44,57 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-between p-8">
-      <main className="flex-1 flex items-center justify-center">
+    <div className="h-screen flex flex-col bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white">
+      {/* Header */}
+      <header className="text-center py-6 bg-black bg-opacity-50">
+        <h1 className="text-4xl md:text-6xl font-bold">Zap Studio</h1>
+        <p className="text-lg md:text-2xl text-gray-400 mt-2">
+          Transform your imagination into reality with AI.
+        </p>
+      </header>
+
+      {/* Main Content */}
+      <main className="flex-1 flex flex-col items-center justify-center overflow-y-auto p-4">
+        {isLoading && (
+          <div className="flex flex-col items-center justify-center">
+            <div className="loader mb-4"></div>
+            <p className="text-gray-400">Generating your image...</p>
+          </div>
+        )}
+
         {imageUrl && (
-          <div className="flex items-center justify-center w-full max-w-2xl rounded-lg overflow-hidden shadow-lg">
+          <div className="w-full max-w-2xl rounded-lg overflow-hidden shadow-lg mt-4">
             <img
               src={imageUrl}
               alt="Generated artwork"
-              className="w-full h-auto"
+              className="w-full h-auto object-contain"
             />
           </div>
         )}
       </main>
 
-      <footer className="w-full max-w-3xl mx-auto">
-        <form onSubmit={handleSubmit} className="w-full">
-          <div className="flex gap-2">
-            <input
-              id="imageDescription"
-              type="text"
-              value={inputText}
-              onChange={e => setInputText(e.target.value)}
-              className="flex-1 p-3 rounded-lg bg-black/[.05] dark:bg-white/[.06] border border-black/[.08] dark:border-white/[.145] focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white"
-              placeholder="Describe the image you want to generate..."
-              disabled={isLoading}
-            />
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="px-6 py-3 rounded-lg bg-foreground text-background hover:bg-[#383838] dark:hover:bg-[#ccc] transition-colors disabled:opacity-50"
-            >
-              {isLoading ? "Generating..." : "Generate"}
-            </button>
-          </div>
+      {/* Footer / Form */}
+      <footer className="bg-gray-800 w-full py-6 flex justify-center">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full max-w-3xl flex flex-col md:flex-row gap-4"
+        >
+          <input
+            id="imageDescription"
+            type="text"
+            value={inputText}
+            onChange={e => setInputText(e.target.value)}
+            className="flex-1 p-4 rounded-lg bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition disabled:opacity-50 text-white"
+            placeholder="Describe the image you want to generate..."
+            disabled={isLoading}
+          />
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="px-6 py-4 rounded-lg bg-blue-600 text-white font-bold hover:bg-blue-700 transition disabled:opacity-50"
+          >
+            {isLoading ? "Generating..." : "Generate"}
+          </button>
         </form>
       </footer>
     </div>
